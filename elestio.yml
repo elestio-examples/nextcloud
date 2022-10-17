@@ -7,6 +7,15 @@ ports:
     public: true
     path: "/"
     isAuth: false
+  - protocol: "HTTPS"
+    targetProtocol: "HTTP"
+    listeningPort: "21443"
+    targetPort: "21001"
+    targetIP: "172.17.0.1"
+    public: true
+    path: "/"
+    isAuth: false
+    
 environments:
   - key: DOMAIN
     value: "[CI_CD_DOMAIN]"

@@ -38,6 +38,7 @@ services:
             - MAIL_FROM_ADDRESS=[DOMAIN]@vm.elestio.app
             - PHP_MEMORY_LIMIT=512M
             - PHP_UPLOAD_LIMIT=512M
+            - OVERWRITEPROTOCOL=https
         ports:
             - 172.17.0.1:21000:80
         volumes: 
@@ -57,7 +58,7 @@ services:
             - username=${ADMIN_LOGIN}
             - password=${ADMIN_PASSWORD}
         ports:
-            - 1001:9980
+            - 172.17.0.1:21001:9980
         restart: always
         volumes:
             - "/etc/localtime:/etc/localtime:ro"
