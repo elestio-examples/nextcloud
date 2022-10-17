@@ -9,7 +9,7 @@ services:
           - ./db:/var/lib/mysql
         environment:
           - MYSQL_ROOT_PASSWORD=${ADMIN_PASSWORD}
-          - MYSQL_PASSWORD=${ADMIN_PASSWORD}
+          - MYSQL_PASSWORD=nextcloud
           - MYSQL_DATABASE=nextcloud
           - MYSQL_USER=nextcloud
     redis:
@@ -23,7 +23,7 @@ services:
         image: nextcloud:latest
         restart: always
         environment: 
-            - MYSQL_PASSWORD=${ADMIN_PASSWORD}
+            - MYSQL_PASSWORD=nextcloud
             - MYSQL_DATABASE=nextcloud
             - MYSQL_USER=nextcloud
             - MYSQL_HOST=db
