@@ -1,18 +1,20 @@
 ports:
   - protocol: "HTTPS"
-    targetProtocol: "HTTPS"
+    targetProtocol: "HTTP"
     listeningPort: "443"
-    targetPort: "8780"
+    targetPort: "21000"
     targetIP: "172.17.0.1"
     public: true
     path: "/"
     isAuth: false
-  - protocol: "TCP"
-    targetProtocol: "TCP"
-    listeningPort: "3478"
-    targetPort: "13478"
+  - protocol: "HTTPS"
+    targetProtocol: "HTTP"
+    listeningPort: "21001"
+    targetPort: "21001"
     targetIP: "172.17.0.1"
     public: true
+    path: "/"
+    isAuth: false
     
 environments:
   - key: DOMAIN
