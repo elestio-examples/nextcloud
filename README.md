@@ -13,5 +13,5 @@ Deploy Nextcloud with CI/CD on Elestio
 You can can open Nextcloud here:
 
     URL: https://[CI_CD_DOMAIN]
-    Login: root
+    login: root
     password: [ADMIN_PASSWORD]
