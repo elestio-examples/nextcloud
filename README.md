@@ -4,7 +4,7 @@
 
 Deploy Nextcloud with CI/CD on Elestio
 
-<img src="nextcloud.jpg" style='width: 100%;'/>
+<img src="nextcloud.png" style='width: 100%;'/>
 <br/>
 <br/>
 
