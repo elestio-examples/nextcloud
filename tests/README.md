@@ -50,50 +50,49 @@ You can access the Web UI at: `http://your-domain:22000`
 Here are some example snippets to help you get started creating a container.
 
       
-version: '3.3'
+        version: '3.3'
+        services:
+        db:
+            image: mariadb:10.5
+            restart: always
+            command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+            volumes:
+            - ./db:/var/lib/mysql
+            environment:
+            - MYSQL_ROOT_PASSWORD=123456
+            - MYSQL_PASSWORD=123456
+            - MYSQL_DATABASE=nextcloud
+            - MYSQL_USER=nextcloud
 
-services:
-  db:
-    image: mariadb:10.5
-    restart: always
-    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
-    volumes:
-      - ./db:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=123456
-      - MYSQL_PASSWORD=123456
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
-
-  app:
-    image: elestio4test/nextcloud:${SOFTWARE_VERSION_TAG}
-    restart: always
-    ports:
-      - 172.17.0.1:22000:80
-    links:
-      - db
-    volumes:
-      - ./nextcloud:/var/www/html
-      - ./apps:/var/www/html/custom_apps
-      - ./config:/var/www/html/config
-      - ./data:/var/www/html/data
-    environment:
-      - MYSQL_PASSWORD=123456
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
-      - MYSQL_HOST=db
-      - NEXTCLOUD_TRUSTED_DOMAINS=${DOMAIN}
-      - OVERWRITEPROTOCOL=https
-      
-  cron:
-    image: elestio4test/nextcloud:${SOFTWARE_VERSION_TAG}
-    restart: always
-    volumes:
-      - ./nextcloud:/var/www/html
-      - ./apps:/var/www/html/custom_apps
-      - ./config:/var/www/html/config
-      - ./data:/var/www/html/data
-    entrypoint: /cron.sh
+        app:
+            image: elestio4test/nextcloud:${SOFTWARE_VERSION_TAG}
+            restart: always
+            ports:
+            - 172.17.0.1:22000:80
+            links:
+            - db
+            volumes:
+            - ./nextcloud:/var/www/html
+            - ./apps:/var/www/html/custom_apps
+            - ./config:/var/www/html/config
+            - ./data:/var/www/html/data
+            environment:
+            - MYSQL_PASSWORD=123456
+            - MYSQL_DATABASE=nextcloud
+            - MYSQL_USER=nextcloud
+            - MYSQL_HOST=db
+            - NEXTCLOUD_TRUSTED_DOMAINS=${DOMAIN}
+            - OVERWRITEPROTOCOL=https
+            
+        cron:
+            image: elestio4test/nextcloud:${SOFTWARE_VERSION_TAG}
+            restart: always
+            volumes:
+            - ./nextcloud:/var/www/html
+            - ./apps:/var/www/html/custom_apps
+            - ./config:/var/www/html/config
+            - ./data:/var/www/html/data
+            entrypoint: /cron.sh
 
 ### Environment variables
 
