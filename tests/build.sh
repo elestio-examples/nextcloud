@@ -1,0 +1,1 @@
+docker buildx build -f ./27/apache/Dockerfile . --output type=docker,name=elestio4test/nextcloud:latest | docker load
