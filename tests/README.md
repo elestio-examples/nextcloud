@@ -38,7 +38,6 @@ Copy the .env file from tests folder to the project directory
 
 Edit the .env file with your own values.
 
-
 Run the project with the following command
 
     docker-compose up -d
@@ -49,7 +48,6 @@ You can access the Web UI at: `http://your-domain:22000`
 
 Here are some example snippets to help you get started creating a container.
 
-      
         version: '3.3'
         services:
         db:
@@ -83,7 +81,7 @@ Here are some example snippets to help you get started creating a container.
             - MYSQL_HOST=db
             - NEXTCLOUD_TRUSTED_DOMAINS=${DOMAIN}
             - OVERWRITEPROTOCOL=https
-            
+
         cron:
             image: elestio4test/nextcloud:${SOFTWARE_VERSION_TAG}
             restart: always
@@ -99,7 +97,7 @@ Here are some example snippets to help you get started creating a container.
 |       Variable       | Value (example) |
 | :------------------: | :-------------: |
 | SOFTWARE_VERSION_TAG |     latest      |
-
+|        DOMAIN        |   your.domain   |
 
 # Maintenance
 
