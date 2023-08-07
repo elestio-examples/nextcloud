@@ -1,21 +1,20 @@
-
-version: '2'
+version: "2"
 
 services:
   db:
-    image: mariadb:10.5
+    image: elestio/mysql:latest
     restart: always
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     volumes:
       - ./db:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=123456
-      - MYSQL_PASSWORD=123456
+      - MYSQL_ROOT_PASSWORD=${ADMIN_PASSWORD}
+      - MYSQL_PASSWORD=${ADMIN_PASSWORD}
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
 
   app:
-    image: nextcloud
+    image: elestio/nextcloud:latest
     restart: always
     ports:
       - 172.17.0.1:22000:80
@@ -27,15 +26,15 @@ services:
       - ./config:/var/www/html/config
       - ./data:/var/www/html/data
     environment:
-      - MYSQL_PASSWORD=123456
+      - MYSQL_PASSWORD=${ADMIN_PASSWORD}
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
       - MYSQL_HOST=db
       - NEXTCLOUD_TRUSTED_DOMAINS=${DOMAIN}
       - OVERWRITEPROTOCOL=https
-      
+
   cron:
-    image: nextcloud
+    image: elestio/nextcloud:latest
     restart: always
     volumes:
       - ./nextcloud:/var/www/html

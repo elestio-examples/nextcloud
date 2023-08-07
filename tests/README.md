@@ -51,14 +51,14 @@ Here are some example snippets to help you get started creating a container.
         version: '3.3'
         services:
         db:
-            image: mariadb:10.5
+            image: elestio/mysql:latest
             restart: always
             command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
             volumes:
             - ./db:/var/lib/mysql
             environment:
-            - MYSQL_ROOT_PASSWORD=123456
-            - MYSQL_PASSWORD=123456
+            - MYSQL_ROOT_PASSWORD=${ADMIN_PASSWORD}
+            - MYSQL_PASSWORD=${ADMIN_PASSWORD}
             - MYSQL_DATABASE=nextcloud
             - MYSQL_USER=nextcloud
 
@@ -75,7 +75,7 @@ Here are some example snippets to help you get started creating a container.
             - ./config:/var/www/html/config
             - ./data:/var/www/html/data
             environment:
-            - MYSQL_PASSWORD=123456
+            - MYSQL_PASSWORD=${ADMIN_PASSWORD}
             - MYSQL_DATABASE=nextcloud
             - MYSQL_USER=nextcloud
             - MYSQL_HOST=db
@@ -98,6 +98,7 @@ Here are some example snippets to help you get started creating a container.
 | :------------------: | :-------------: |
 | SOFTWARE_VERSION_TAG |     latest      |
 |        DOMAIN        |   your.domain   |
+|    ADMIN_PASSWORD    |  your-password  |
 
 # Maintenance
 

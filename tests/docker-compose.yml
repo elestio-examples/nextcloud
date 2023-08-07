@@ -1,9 +1,8 @@
-
-version: '3.3'
+version: "3.3"
 
 services:
   db:
-    image: mariadb:10.5
+    image: elestio/mysql:latest
     restart: always
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     volumes:
@@ -33,7 +32,7 @@ services:
       - MYSQL_HOST=db
       - NEXTCLOUD_TRUSTED_DOMAINS=${DOMAIN}
       - OVERWRITEPROTOCOL=https
-      
+
   cron:
     image: elestio4test/nextcloud:${SOFTWARE_VERSION_TAG}
     restart: always
