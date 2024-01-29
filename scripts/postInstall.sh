@@ -1,10 +1,14 @@
 set env vars
 set -o allexport; source .env; set +o allexport;
 
-sleep 20s;
+sleep 60s;
 
+echo "Installing..."
 
 target=$(docker-compose port app 80)
+curl http://${target}/index.php
+sed -i "/'overwriteprotocol' => 'https',/a   'skeletondirectory' => ''," ./config/config.php
+
 
 
 curl http://${target}/index.php \
