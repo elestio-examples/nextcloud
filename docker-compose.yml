@@ -14,7 +14,7 @@ services:
       - MYSQL_USER=nextcloud
 
   app:
-    image: elestio/nextcloud:latest
+    image: elestio/nextcloud:${SOFTWARE_VERSION_TAG}
     restart: always
     ports:
       - 172.17.0.1:22000:80
@@ -34,7 +34,7 @@ services:
       - OVERWRITEPROTOCOL=https
 
   cron:
-    image: elestio/nextcloud:latest
+    image: elestio/nextcloud:${SOFTWARE_VERSION_TAG}
     restart: always
     volumes:
       - ./nextcloud:/var/www/html
